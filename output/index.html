@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script type="text/javascript" src="./wasm_exec.js"></script>
+    <script type="text/javascript">
+      async function run(fileUrl) {
+        try {
+          const file = await fetch(fileUrl);
+          const buffer = await file.arrayBuffer();
+          const go = new Go();
+          const { instance } = await WebAssembly.instantiate(buffer, go.importObject);
+          go.run(instance);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      setTimeout(() => run("./fingerprint.wasm"));
+    </script>
+  </head>
+  <body></body>
+</html>
