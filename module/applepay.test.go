@@ -81,5 +81,7 @@ func Applepay_test() {
 		console.Log("NotAvailableInFrame OK")
 	}
 
+	api.JsEval("window.ApplePaySession = undefined")
+
 	console.Log("applepay end")
 }
