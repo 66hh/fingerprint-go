@@ -23,6 +23,7 @@ func MakeFingerprint() string {
 	result = result + "|" + module.GetTouchSupport()
 	result = result + "|" + module.GetPlatform()
 	result = result + "|" + module.GetTimezone()
+	result = result + "|" + module.GetLanguage()
 
 	console.Log(result)
 
