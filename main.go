@@ -4,6 +4,7 @@ import (
 	"fingerprint/api/console"
 	"fingerprint/fingerprint"
 	"fingerprint/module"
+	"syscall/js"
 )
 
 func test() {
@@ -25,6 +26,12 @@ func test() {
 	console.Log("result: " + fingerprint.MakeFingerprint())
 }
 
+func VisitorID(this js.Value, args []js.Value) interface{} {
+	return js.ValueOf(fingerprint.MakeFingerprint())
+}
+
 func main() {
-	test()
+	done := make(chan int, 0)
+	js.Global().Set("VisitorID", js.FuncOf(VisitorID))
+	<-done
 }
