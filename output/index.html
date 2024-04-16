@@ -18,6 +18,17 @@
       }
       setTimeout(() => run("./fingerprint.wasm"));
     </script>
+
+    <script type="text/javascript">
+      setTimeout(function() {
+        var input = document.getElementById("result");
+        input.value = VisitorID()
+      }, 100);
+    </script>
+
   </head>
-  <body></body>
+  <body>
+    <p>Your Fingerprint:</p>
+    <input type="text" id="result">
+  </body>
 </html>
